@@ -1,22 +1,49 @@
-/* import MyFirstComponent from "./playGround/MyFirstReact";
-import My2Component from "./playGround/My2React"; */
-import { Fragment } from "react";
-import TirgulFirst from "./playGround/Tirgul1209";
-/* import My3Component from "./playGround/My3React";
-import StyleinLine from "./playGround/StyleinLine";
-import TypografyComponent from "./playGround/Typography"; */
+import { Box } from "@mui/material";
+import "react-toastify/dist/ReactToastify.css";
+import LayoutComponent from "./layout/LayoutComponent";
+import Routes from "./routes/Router";
+import { ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
+import useAutoLogin from "./hooks/useAutoLogin";
+import LoadingPageComponent from "./components/LoadingPageComponent";
+
 const App = () => {
+  const [doneAuth, setDoneAuth] = useState(false);
+  const autoLogin = useAutoLogin();
+  useEffect(() => {
+    (async () => {
+      try {
+        await autoLogin(); //false is default
+      } catch (err) {
+        console.log(err);
+      } finally {
+        //this block of code will executed when the promise done
+        //no matter if its done or got error
+        setDoneAuth(true);
+      }
+    })();
+  }, []);
+  useEffect(() => {
+    autoLogin();
+  }, []);
   return (
-    /*  <Fragment>
-      <MyFirstComponent />
-      <My2Component />
-      <My3Component />
-      <StyleinLine />
-      <TypografyComponent />
-    </Fragment> */
-    <Fragment>
-      <TirgulFirst />
-    </Fragment>
+    <Box>
+      <LayoutComponent>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        {doneAuth ? <Routes /> : <LoadingPageComponent />}
+      </LayoutComponent>
+    </Box>
   );
 };
 
