@@ -1,9 +1,13 @@
-import ROUTES from "../../routes/ROUTES";
-import { useNavigate } from "react-router-dom";
-
 const ErrorComponent = () => {
-  const navigate = useNavigate();
-  return navigate(ROUTES.HOME);
+  return (
+    <img
+      style={{ width: "100%", height: "auto" }}
+      src={`https://colorlib.com/wp/wp-content/uploads/sites/2/404-error-template-15.png`}
+      alt="error"
+      loading="lazy"
+    />
+  );
 };
 export default ErrorComponent;
+
 
