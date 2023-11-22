@@ -61,90 +61,90 @@ const NavBarRes = ({ handleCloseNavMenu }) => {
   return (
     <Paper sx={{ maxWidth: "100%" }}>
       <MenuList>
-        <MenuItem>
-          <ListItemIcon onClick={handleClickHome}>
+        <ListItemIcon onClick={handleClickHome}>
+          <MenuItem>
             <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home Page" />
-        </MenuItem>
+            <ListItemText primary="Home Page" />
+          </MenuItem>
+        </ListItemIcon>
       </MenuList>
       {!loggedIn && (
         <MenuList>
-          <MenuItem>
-            <ListItemIcon onClick={handleClickReg}>
+          <ListItemIcon onClick={handleClickReg}>
+            <MenuItem>
               <AppRegistrationIcon />
-            </ListItemIcon>
-            <ListItemText primary="Register" />
-          </MenuItem>
+              <ListItemText primary="Register" />
+            </MenuItem>
+          </ListItemIcon>
         </MenuList>
       )}
       {!loggedIn && (
         <MenuList>
-          <MenuItem>
-            <ListItemIcon onClick={handleClickLog}>
+          <ListItemIcon onClick={handleClickLog}>
+            <MenuItem>
               <LoginIcon />
-            </ListItemIcon>
-            <ListItemText primary="Log-in" />
-          </MenuItem>
+              <ListItemText primary="Log-in" />
+            </MenuItem>
+          </ListItemIcon>
         </MenuList>
       )}
       {loggedIn && (
         <MenuList>
-          <MenuItem>
-            <ListItemIcon onClick={handleClickFav}>
+          <ListItemIcon onClick={handleClickFav}>
+            <MenuItem>
               <FavoriteIcon />
-            </ListItemIcon>
-            <ListItemText primary="FAV Cards" />
-          </MenuItem>
+              <ListItemText primary="FAV Cards" />
+            </MenuItem>
+          </ListItemIcon>
         </MenuList>
       )}
       {loggedIn && (
         <MenuList>
-          <MenuItem>
-            <ListItemIcon onClick={handleClickPro}>
+          <ListItemIcon onClick={handleClickPro}>
+            <MenuItem>
               <AssignmentIndIcon />
-            </ListItemIcon>
-            <ListItemText primary="Profile" />
-          </MenuItem>
+              <ListItemText primary="Profile" />
+            </MenuItem>
+          </ListItemIcon>
         </MenuList>
       )}
       {userData && userData.isBusiness && (
         <MenuList>
-          <MenuItem>
-            <ListItemIcon onClick={handleClickMy}>
+          <ListItemIcon onClick={handleClickMy}>
+            <MenuItem>
               <StyleIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Cards" />
-          </MenuItem>
+              <ListItemText primary="My Cards" />
+            </MenuItem>
+          </ListItemIcon>
         </MenuList>
       )}
       {userData && userData.isAdmin && (
         <MenuList>
-          <MenuItem>
-            <ListItemIcon onClick={handleClickCeo}>
+          <ListItemIcon onClick={handleClickCeo}>
+            <MenuItem>
               <AdminPanelSettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="CEO" />
-          </MenuItem>
+              <ListItemText primary="CEO" />
+            </MenuItem>
+          </ListItemIcon>
         </MenuList>
       )}
 
       <MenuList>
-        <MenuItem>
-          <ListItemIcon onClick={handleClickAbout}>
+        <ListItemIcon onClick={handleClickAbout}>
+          <MenuItem>
             <InfoIcon />
-          </ListItemIcon>
-          <ListItemText primary="About" />
-        </MenuItem>
+            <ListItemText primary="About" />
+          </MenuItem>
+        </ListItemIcon>
       </MenuList>
       {loggedIn && (
         <MenuList>
-          <MenuItem>
-            <ListItemIcon onClick={handleClickLogOut}>
+          <ListItemIcon onClick={handleClickLogOut}>
+            <MenuItem>
               <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText primary="LogOut" />
-          </MenuItem>
+              <ListItemText primary="LogOut" />
+            </MenuItem>
+          </ListItemIcon>
         </MenuList>
       )}
     </Paper>
