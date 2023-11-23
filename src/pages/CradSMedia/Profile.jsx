@@ -81,7 +81,12 @@ const Profile = () => {
           {" "}
           <Typography
             variant="h3"
-            sx={{ marginBottom: "5%", display: "inline-block", width: "70%" }}
+            sx={{
+              marginBottom: "5%",
+              display: "inline-block",
+              width: "70%",
+              fontFamily: "fantasy",
+            }}
           >
             User Profile
           </Typography>

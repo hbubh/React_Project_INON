@@ -6,7 +6,7 @@ const AboutComponent = () => {
       sx={{
         width: "100%",
         height: "auto",
-        padding: "30px",
+        padding: { xs: "5px", md: "30px" },
         mt: { xs: "20%", md: "5%", lg: "5%" },
       }}
     >
@@ -23,7 +23,7 @@ const AboutComponent = () => {
             variant="h2"
             sx={{
               padding: "10px",
-              width: "40%",
+              width: { xs: "100%", md: "40%" },
               textAlign: "left",
             }}
           >
@@ -34,6 +34,7 @@ const AboutComponent = () => {
               width: "20%",
               height: "auto",
               paddingBottom: "10px",
+              marginLeft: "30%",
             }}
             src="https://cdn-icons-png.flaticon.com/512/6717/6717314.png"
             alt="Our Logo"

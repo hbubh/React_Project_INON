@@ -1,32 +1,16 @@
 import * as React from "react";
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Switch,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, Toolbar, Typography, Switch } from "@mui/material";
 import AlignVerticalBottomTwoToneIcon from "@mui/icons-material/AlignVerticalBottomTwoTone";
 import Container from "@mui/material/Container";
-import LogOut from "./ui/LogOut";
-import Links from "../links/Links";
 import StatusUser from "./ui/StatusUserComponent";
 import FilterComponent from "./ui/FilterComponent";
 import { useSelector } from "react-redux";
-import NavBarRes from "./ui/NavBarRes";
+import { NavLink } from "react-router-dom";
+import ROUTES from "../../routes/ROUTES";
+import SlideNav from "./ui/SlideNav";
 
 const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
   const handleTheme = () => {
     themeChange();
   };
@@ -40,14 +24,16 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {loggedIn ? <LogOut /> : ""}
+            <SlideNav />
 
-            <AlignVerticalBottomTwoToneIcon
-              sx={{
-                mr: 1,
-                color: "lightgray",
-              }}
-            />
+            <NavLink to={ROUTES.HOME}>
+              <AlignVerticalBottomTwoToneIcon
+                sx={{
+                  mr: 1,
+                  color: "lightgray",
+                }}
+              />
+            </NavLink>
             <Typography
               variant="h6"
               noWrap
@@ -65,68 +51,7 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
             >
               INON.G web
             </Typography>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "flex", md: "none" },
-                width: "10%",
-              }}
-            >
-              <IconButton
-                size="medium"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={Boolean(anchorElNav)}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "inline", md: "none" },
-                }}
-              >
-                <NavBarRes handleCloseNavMenu={handleCloseNavMenu} />
-              </Menu>
-            </Box>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            ></Typography>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", md: "flex", marginLeft: "2%" },
-              }}
-            >
-              <Links />
-            </Box>
+            <Box sx={{ width: "50%" }} />
             <Box>
               <StatusUser />
               <Typography sx={{ display: { xs: "none", md: "inline" } }}>

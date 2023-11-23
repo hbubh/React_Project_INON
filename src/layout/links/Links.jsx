@@ -15,74 +15,54 @@ const Links = () => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
   return (
-    <Box sx={{ flexGrow: 1, display: "flex" }}>
+    <Fragment>
       {alwaysLinks.map((myItem) => (
         <Fragment key={nextKey()}>
-          <NavLinks to={myItem.to}>{myItem.children}</NavLinks>
-          <Box sx={{ paddingTop: "1%", ml: "2%" }}>
-            <Divider
-              orientation="vertical"
-              flexItem
-              sx={{ bgcolor: "white", height: "60%", mb: "-20%" }}
-            />
-          </Box>
+          <NavLinks to={myItem.to}>
+            {myItem.icon} {myItem.children}
+          </NavLinks>
+          <Divider />
         </Fragment>
       ))}
       {loggedIn &&
         loggedInLinks.map((myItem) => (
           <Fragment key={nextKey()}>
-            <NavLinks to={myItem.to}>{myItem.children}</NavLinks>
-            <Box sx={{ paddingTop: "1%", ml: "2%" }}>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ bgcolor: "white", height: "60%" }}
-              />
-            </Box>
+            <NavLinks to={myItem.to}>
+              {myItem.icon} {myItem.children}
+            </NavLinks>
+            <Divider />
           </Fragment>
         ))}
       {userData &&
         userData.isBusiness &&
         loggedInBizLinks.map((myItem) => (
           <Fragment key={nextKey()}>
-            <NavLinks to={myItem.to}>{myItem.children}</NavLinks>
-            <Box sx={{ paddingTop: "1%", ml: "2%" }}>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ bgcolor: "white", height: "60%" }}
-              />
-            </Box>
+            <NavLinks to={myItem.to}>
+              {myItem.icon} {myItem.children}
+            </NavLinks>
+            <Divider />
           </Fragment>
         ))}
       {userData &&
         userData.isAdmin &&
         loggedInAdminLinks.map((myItem) => (
           <Fragment key={nextKey()}>
-            <NavLinks to={myItem.to}>{myItem.children}</NavLinks>
-            <Box sx={{ paddingTop: "1%", ml: "2%" }}>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ bgcolor: "white", height: "60%" }}
-              />
-            </Box>
+            <NavLinks to={myItem.to}>
+              {myItem.icon} {myItem.children}
+            </NavLinks>
+            <Divider />
           </Fragment>
         ))}
       {!loggedIn &&
         loggedOutLinks.map((myItem) => (
           <Fragment key={nextKey()}>
-            <NavLinks to={myItem.to}>{myItem.children}</NavLinks>
-            <Box sx={{ paddingTop: "1%", ml: "2%" }}>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ bgcolor: "white", height: "60%" }}
-              />
-            </Box>
+            <NavLinks to={myItem.to}>
+              {myItem.icon} {myItem.children}
+            </NavLinks>
+            <Divider />
           </Fragment>
         ))}
-    </Box>
+    </Fragment>
   );
 };
 

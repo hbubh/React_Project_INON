@@ -33,6 +33,7 @@ const Router = () => {
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutComponent />} />
+      <Route path="/React_Project_INON" element={<NavCards />} />
 
       <Route
         path={ROUTES.ADMIN}

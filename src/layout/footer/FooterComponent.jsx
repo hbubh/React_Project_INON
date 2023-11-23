@@ -5,7 +5,7 @@ const FooterComponent = () => {
   return (
     <BottomNavigation
       sx={{
-        backgroundColor: "black",
+        backgroundColor: "darkgray",
         boxShadow: "-3px 0px 5px",
         opacity: "0.8",
         width: "100%",

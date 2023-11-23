@@ -9,7 +9,7 @@ const NavLinks = ({ to, children }) => {
     >
       {({ isActive }) => (
         <Typography
-          color={isActive ? "gold" : "white"}
+          color={isActive ? "maroon" : "black"}
           sx={{ my: 2, display: "block", fontWeight: "bold" }}
         >
           {children}

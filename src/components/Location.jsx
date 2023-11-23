@@ -18,12 +18,11 @@ const NewYorkMap = () => {
         width: "80%",
         height: "200px",
         overflow: "hidden",
-        border: "3px solid black",
+        border: "2px solid black",
         borderRight: "none",
-        borderRadius: "90px",
+        borderRadius: "10px",
         backgroundColor: "rgb(4, 92, 147)",
         color: "black",
-        boxShadow: "3px 3px 7px",
         mb: "2%",
       }}
     >

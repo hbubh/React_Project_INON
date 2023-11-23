@@ -7,9 +7,15 @@ import { Fragment } from "react";
 
 const LinksBottom = () => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
+  const handleScrollUp = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
-    <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "space-evenly" }}>
+    <Box
+      sx={{ flexGrow: 1, display: "flex", justifyContent: "space-evenly" }}
+      onClick={handleScrollUp}
+    >
       {alwaysLinks.map((myItem) => (
         <Fragment key={nextKey()}>
           <NavLinks to={myItem.to}>{myItem.children}</NavLinks>
