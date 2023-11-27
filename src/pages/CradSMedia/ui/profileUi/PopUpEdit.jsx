@@ -80,7 +80,8 @@ const PopUpEdit = ({ createEdit, cancelEdit }) => {
       >
         <Typography variant="h3">Edit User!?</Typography>
         <Typography variant="subtitle2" sx={{ mt: "2%", mb: "10%" }}>
-          Update Your User Deatlis
+          Update Your User Deatlis. for that you need to RECONECET after your
+          confirom
         </Typography>
         <Grid container spacing={2}>
           {arr.map((input) => (

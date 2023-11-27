@@ -1,14 +1,17 @@
 import { Box, Button } from "@mui/material";
 import axios from "axios";
 import ROUTES from "../../../../routes/ROUTES";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Fragment, useState } from "react";
 import PopUpDelete from "./PopUpDelete";
+import { authActions } from "../../../../store/authSlice";
 
 const DeleteUser = ({ thisId }) => {
   const navigate = useNavigate();
   const [thisDisplay, setDisplay] = useState("none");
+  const dispatch = useDispatch;
   const [thisOp, setOp] = useState("1");
   const handleDeleteClick = () => {
     setDisplay("block");
@@ -20,7 +23,7 @@ const DeleteUser = ({ thisId }) => {
   };
   const handleDeleteDone = async () => {
     try {
-      let { data } = await axios.delete(`/users/${thisId}`);
+      let data = await axios.delete(`/users/${thisId}`);
       localStorage.clear();
       sessionStorage.clear();
       toast("You Delete Your User successfully", {
@@ -33,12 +36,11 @@ const DeleteUser = ({ thisId }) => {
         progress: undefined,
         theme: "dark",
       });
-      setTimeout(() => {
-        window.location.reload();
-        navigate(ROUTES.HOME);
-      }, 2000);
+
+      dispatch(authActions.logout());
+      navigate(ROUTES.HOME);
     } catch (err) {
-      toast.info(`Unsuccess data error, ${err.response.data} `, {
+      toast.info(`Unsuccess data error, `, {
         position: toast.POSITION.TOP_CENTER,
       });
     }

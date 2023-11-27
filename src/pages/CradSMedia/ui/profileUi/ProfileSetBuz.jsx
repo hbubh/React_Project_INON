@@ -1,15 +1,18 @@
 import { Box, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import PopUpBuz from "./PopUpBuz";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import ROUTES from "../../../../routes/ROUTES";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { authActions } from "../../../../store/authSlice";
 
 const circle = <CircularProgress sx={{ ml: "50%" }} />;
 const ProfileSetBuz = ({ thisId, thisPop, cancelBuz }) => {
   const [thisCircle, setCircle] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleBuzClick = async () => {
     try {
       let id = thisId;
@@ -28,7 +31,7 @@ const ProfileSetBuz = ({ thisId, thisPop, cancelBuz }) => {
       setTimeout(() => {
         localStorage.clear();
         sessionStorage.clear();
-        window.location.reload();
+        dispatch(authActions.logout());
         navigate(ROUTES.HOME);
       }, 4000);
     } catch (err) {

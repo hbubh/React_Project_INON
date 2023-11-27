@@ -1,20 +1,25 @@
 import LogoutIcon from "@mui/icons-material/Logout";
 import { IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ROUTES from "../../../routes/ROUTES";
+import { authActions } from "../../../store/authSlice";
 import { useState } from "react";
 
 const LogOut = () => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+  const dispatch = useDispatch();
 
   const handleLogOutClick = () => {
     localStorage.clear();
     sessionStorage.clear();
-    navigate(ROUTES.HOME);
-    window.location.reload();
     window.scrollTo(0, 0);
+    dispatch(authActions.logout());
+    navigate(ROUTES.LOGIN);
+    //window.location.reload();
   };
+
   const elementStyle = {
     backgroundColor: isHovered ? "darkgray" : "black",
     color: isHovered ? "black" : "darkgray",

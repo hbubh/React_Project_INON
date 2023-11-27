@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import SlideNav from "./ui/SlideNav";
+import CustomizedSwitches from "./ui/NewIconSwitch";
 
 const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
@@ -51,17 +52,21 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
             >
               INON.G web
             </Typography>
-            <Box sx={{ width: "50%" }} />
+            <Box
+              sx={{
+                width: {
+                  xs: loggedIn ? "10%" : "35%",
+                  md: loggedIn ? "35%" : "45%",
+                  lg: loggedIn ? "50%" : "60%",
+                },
+              }}
+            />
             <Box>
-              <StatusUser />
-              <Typography sx={{ display: { xs: "none", md: "inline" } }}>
-                {thisTheme ? "Dark" : "Light"} Mode
-              </Typography>
-              <Switch
-                checked={thisTheme}
-                onChange={handleTheme}
-                color="secondary"
+              <CustomizedSwitches
+                thisTheme={thisTheme}
+                handleTheme={handleTheme}
               />
+              <StatusUser />
             </Box>
             {loggedIn ? <FilterComponent /> : <></>}
           </Toolbar>

@@ -25,14 +25,21 @@ const StatusUser = () => {
           setOn(<OnlineComponent />);
         })
         .catch((err) => {});
+    } else {
+      setName("User Offline");
+      setOn("");
+      setDis("none");
+      setColor("darkgray");
+      setBd("1px solid darkgray");
     }
   }, [loggedIn]);
   return (
-    <Box>
+    <Box sx={{ ml: "-20%" }}>
       <Typography
         sx={{
-          width: "100%",
+          width: { xs: loggedIn ? "160%" : "120%", md: "100%" },
           fontWeight: "bold",
+          ml: { xs: "-30%", md: "0" },
           textAlign: "center",
           padding: "3px",
           color: thisColor,

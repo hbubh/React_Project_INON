@@ -9,58 +9,67 @@ import {
   loggedInBizLinks,
   loggedInAdminLinks,
 } from "./Mylink";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const Links = () => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
+  const [thisDis, setDis] = useState("block");
+  const [thisDis1, setDis1] = useState("block");
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
+  useEffect(() => {
+    {
+      loggedIn ? setDis("block") : setDis("none");
+      loggedIn ? setDis1("none") : setDis1("block");
+    }
+  }, [loggedIn]);
+
   return (
     <Fragment>
       {alwaysLinks.map((myItem) => (
-        <Fragment key={nextKey()}>
+        <Box key={nextKey()}>
           <NavLinks to={myItem.to}>
             {myItem.icon} {myItem.children}
           </NavLinks>
           <Divider />
-        </Fragment>
+        </Box>
       ))}
       {loggedIn &&
         loggedInLinks.map((myItem) => (
-          <Fragment key={nextKey()}>
+          <Box sx={{ display: thisDis }} key={nextKey()}>
             <NavLinks to={myItem.to}>
               {myItem.icon} {myItem.children}
             </NavLinks>
             <Divider />
-          </Fragment>
+          </Box>
         ))}
       {userData &&
         userData.isBusiness &&
         loggedInBizLinks.map((myItem) => (
-          <Fragment key={nextKey()}>
+          <Box sx={{ display: thisDis }} key={nextKey()}>
             <NavLinks to={myItem.to}>
               {myItem.icon} {myItem.children}
             </NavLinks>
             <Divider />
-          </Fragment>
+          </Box>
         ))}
       {userData &&
         userData.isAdmin &&
         loggedInAdminLinks.map((myItem) => (
-          <Fragment key={nextKey()}>
+          <Box sx={{ display: thisDis }} key={nextKey()}>
             <NavLinks to={myItem.to}>
               {myItem.icon} {myItem.children}
             </NavLinks>
             <Divider />
-          </Fragment>
+          </Box>
         ))}
       {!loggedIn &&
         loggedOutLinks.map((myItem) => (
-          <Fragment key={nextKey()}>
+          <Box sx={{ display: thisDis1 }} key={nextKey()}>
             <NavLinks to={myItem.to}>
               {myItem.icon} {myItem.children}
             </NavLinks>
             <Divider />
-          </Fragment>
+          </Box>
         ))}
     </Fragment>
   );

@@ -1,10 +1,16 @@
 import { Box, Button } from "@mui/material";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 import { Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PopUpEdit from "./PopUpEdit";
+import { authActions } from "../../../../store/authSlice";
+import ROUTES from "../../../../routes/ROUTES";
 
 const EditProfile = ({ thisId }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [thisDisplay, setDisplay] = useState("none");
   const [thisOp, setOp] = useState("1");
   const handleDeleteClick = () => {
@@ -19,7 +25,7 @@ const EditProfile = ({ thisId }) => {
   const handleEditDone = async (request) => {
     try {
       let { data } = await axios.put(`/users/${thisId}`, request);
-      toast("Your Update to Your User Done successfully", {
+      toast("Your Update to Your User Done successfully . Now Reconcet!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -29,9 +35,9 @@ const EditProfile = ({ thisId }) => {
         progress: undefined,
         theme: "dark",
       });
-      setTimeout(() => {
-        window.location.reload();
-      }, 2500);
+
+      dispatch(authActions.logout());
+      navigate(ROUTES.LOGIN);
     } catch (err) {
       toast(err.response.data, {
         position: "top-right",
