@@ -14,7 +14,7 @@ import AlertToEdit from "./profileUi/AlertToEdit";
 import { validateEdit } from "../../../Validation/editValidation";
 
 const circle = <CircularProgress />;
-const AdminSetEdit = () => {
+const AdminSetEdit = ({ setDis, thisDis }) => {
   const [thisValue, setVlue] = React.useState("");
   const [thisCircle, setCircle] = React.useState(" Edit User");
   const [errorsState, setErrorsState] = React.useState(null);
@@ -77,9 +77,10 @@ const AdminSetEdit = () => {
         progress: undefined,
         theme: "dark",
       });
+      setDis(!thisDis);
       setTimeout(() => {
-        window.location.reload();
-      }, 4000);
+        setCircle(" Edit User");
+      }, 3000);
     } catch (err) {
       toast.info(`Unsuccess data error, ${err.response.data} `, {
         position: toast.POSITION.TOP_CENTER,

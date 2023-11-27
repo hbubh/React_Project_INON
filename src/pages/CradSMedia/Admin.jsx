@@ -1,12 +1,13 @@
 import { Box, Paper, Typography } from "@mui/material";
 import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AdminTable from "./ui/AdminTable";
 import { toast } from "react-toastify";
 
 const Admin = () => {
   const [myData, setData] = useState("");
+  const [thisDis, setDis] = useState(true);
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   useEffect(() => {
     axios
@@ -19,7 +20,7 @@ const Admin = () => {
           position: toast.POSITION.TOP_CENTER,
         });
       });
-  }, [loggedIn]);
+  }, [loggedIn, thisDis]);
   return (
     <Box
       sx={{
@@ -67,7 +68,7 @@ const Admin = () => {
             />
           </Box>
         </Box>
-        <AdminTable data={myData} />
+        <AdminTable thisDis={thisDis} setDis={setDis} data={myData} />
       </Paper>
     </Box>
   );

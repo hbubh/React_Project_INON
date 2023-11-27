@@ -44,11 +44,10 @@ const columns = [
     format: (value) => value.toFixed(2),
   },
 ];
-let myData;
-const AdminTable = ({ data }) => {
+const AdminTable = ({ data, thisDis, setDis }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [thisDis, setDis] = React.useState("none");
+
   const arr2 = [];
 
   const createData = (_id, first, email, phone, isBusiness, createdAt) => {
@@ -155,9 +154,9 @@ const AdminTable = ({ data }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
-      <AdminSetBuz />
-      <AdminSetEdit />
-      <AdminSetDelete />
+      <AdminSetBuz setDis={setDis} thisDis={thisDis} />
+      <AdminSetEdit setDis={setDis} thisDis={thisDis} />
+      <AdminSetDelete setDis={setDis} thisDis={thisDis} />
     </Paper>
   );
 };

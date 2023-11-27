@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const circle = <CircularProgress />;
-const AdminSetBuz = () => {
+const AdminSetBuz = ({ setDis, thisDis }) => {
   const [thisValue, setVlue] = React.useState("");
   const [thisAble, setAble] = React.useState(true);
   const [thisCircle, setCircle] = React.useState(
@@ -30,9 +30,10 @@ const AdminSetBuz = () => {
         progress: undefined,
         theme: "dark",
       });
+      setDis(!thisDis);
       setTimeout(() => {
-        window.location.reload();
-      }, 4000);
+        setCircle(" Upgrade User To Busniess Plan");
+      }, 3000);
     } catch (err) {
       toast.info(`Unsuccess data error, ${err.response.data} `, {
         position: toast.POSITION.TOP_CENTER,

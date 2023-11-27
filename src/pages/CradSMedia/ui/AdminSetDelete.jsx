@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const circle = <CircularProgress />;
-const AdminSetDelete = () => {
+const AdminSetDelete = ({ setDis, thisDis }) => {
   const [thisValue, setVlue] = React.useState("");
   const [thisCircle, setCircle] = React.useState(" Delete User!");
   const [thisAble, setAble] = React.useState(true);
@@ -28,9 +28,10 @@ const AdminSetDelete = () => {
         progress: undefined,
         theme: "dark",
       });
+      setDis(!thisDis);
       setTimeout(() => {
-        window.location.reload();
-      }, 4000);
+        setCircle(" Delete User!");
+      }, 3000);
     } catch (err) {
       toast.info(`Unsuccess data error, ${err.response.data} `, {
         position: toast.POSITION.TOP_CENTER,
