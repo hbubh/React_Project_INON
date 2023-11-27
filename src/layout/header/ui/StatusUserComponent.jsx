@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import OnlineComponent from "./OnlineComponent";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ const StatusUser = () => {
   const [thisName, setName] = useState("User Offline");
   const [thisColor, setColor] = useState("darkgray");
   const [thisBd, setBd] = useState("1px solid darkgray");
-  const [thisOn, setOn] = useState("");
+
   const [thisDis, setDis] = useState("none");
   useEffect(() => {
     if (loggedIn) {
@@ -22,12 +22,11 @@ const StatusUser = () => {
           setColor("");
           setBd("");
           setDis("inline-block");
-          setOn(<OnlineComponent />);
         })
         .catch((err) => {});
     } else {
       setName("User Offline");
-      setOn("");
+
       setDis("none");
       setColor("darkgray");
       setBd("1px solid darkgray");
@@ -51,7 +50,6 @@ const StatusUser = () => {
         {thisName}
         <span style={{ textTransform: "none", display: thisDis }}>online</span>
       </Typography>
-      {thisOn}
     </Box>
   );
 };

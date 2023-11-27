@@ -29,8 +29,6 @@ const ProfileSetBuz = ({ thisId, thisPop, cancelBuz }) => {
         theme: "dark",
       });
       setTimeout(() => {
-        localStorage.clear();
-        sessionStorage.clear();
         dispatch(authActions.logout());
         navigate(ROUTES.HOME);
       }, 4000);

@@ -3,15 +3,40 @@ import { AppBar, Box, Toolbar, Typography, Switch } from "@mui/material";
 import AlignVerticalBottomTwoToneIcon from "@mui/icons-material/AlignVerticalBottomTwoTone";
 import Container from "@mui/material/Container";
 import StatusUser from "./ui/StatusUserComponent";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+
 import FilterComponent from "./ui/FilterComponent";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import SlideNav from "./ui/SlideNav";
 import CustomizedSwitches from "./ui/NewIconSwitch";
+import axios from "axios";
 
 const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
+  const [thisUrl, setUrl] = React.useState("");
+  const navigate = useNavigate();
+  const [thisAlt, setAlt] = React.useState("profile img");
+  const userData = useSelector((bigPie) => bigPie.authSlice.userData);
+  let data;
+  if (userData) {
+    data = userData._id;
+  }
+  React.useEffect(() => {
+    axios
+      .get(`/users/${data}`)
+      .then(({ data }) => {
+        setUrl(`${data.image.url}`);
+        setAlt(data.image.alt);
+      })
+      .catch((err) => {});
+  }, [loggedIn]);
+  const handleProfileClick = () => {
+    navigate(ROUTES.PROFILE);
+  };
   const handleTheme = () => {
     themeChange();
   };
@@ -32,6 +57,7 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
                 sx={{
                   mr: 1,
                   color: "lightgray",
+                  display: { xs: "none", md: "block" },
                 }}
               />
             </NavLink>
@@ -55,20 +81,46 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
             <Box
               sx={{
                 width: {
-                  xs: loggedIn ? "10%" : "35%",
+                  xs: loggedIn ? "5%" : "35%",
                   md: loggedIn ? "35%" : "45%",
-                  lg: loggedIn ? "50%" : "60%",
+                  lg: loggedIn ? "45%" : "60%",
                 },
               }}
             />
-            <Box>
+
+            {loggedIn ? <FilterComponent /> : <></>}
+            <Box sx={{ ml: { xs: "10%", md: "5%" } }}>
               <CustomizedSwitches
                 thisTheme={thisTheme}
                 handleTheme={handleTheme}
               />
               <StatusUser />
             </Box>
-            {loggedIn ? <FilterComponent /> : <></>}
+            {loggedIn ? (
+              <Stack
+                direction="row"
+                spacing={2}
+                onClick={handleProfileClick}
+                sx={{
+                  width: "3%",
+                  display: { xs: "none", md: "block" },
+                  height: "auto",
+                  borderRadius: "110px",
+                  border: "3px solid darkgray",
+                  padding: "5px",
+                  bgcolor: "white",
+                  ml: "1%",
+                }}
+              >
+                <Avatar
+                  alt={thisAlt}
+                  src={thisUrl}
+                  sx={{ width: "100%", height: "auto" }}
+                />{" "}
+              </Stack>
+            ) : (
+              <></>
+            )}
           </Toolbar>
         </Container>
       </AppBar>

@@ -29,6 +29,9 @@ const Title2 = () => {
     }, 2000);
   }, [thisBgc1]);
 
+  const handlyUpClick = () => {
+    window.scrollTo(0, 0);
+  };
   const handleLogClick = () => {
     navigate(ROUTES.LOGIN);
   };
@@ -131,6 +134,7 @@ const Title2 = () => {
                     color: "white",
                     borderRadius: "15px",
                   }}
+                  onClick={handlyUpClick}
                 >
                   Start Right Now
                   <LoginIcon />
@@ -142,7 +146,11 @@ const Title2 = () => {
           <Typography sx={{ fontWeight: "bold", color: "teal" }}>
             User exist?
             <Link to={ROUTES.LOGIN} style={{ textDecoration: "none" }}>
-              <Button variant="oulined" sx={{ color: "teal" }}>
+              <Button
+                onClick={handlyUpClick}
+                variant="oulined"
+                sx={{ color: "teal" }}
+              >
                 Click Here
               </Button>
             </Link>

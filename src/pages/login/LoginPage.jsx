@@ -69,6 +69,7 @@ const LoginPage = () => {
       });
     }
   };
+  window.scrollTo(0, 0);
   const handleEmailInputChange = (e) => {
     setEmailValue(e.target.value);
   };

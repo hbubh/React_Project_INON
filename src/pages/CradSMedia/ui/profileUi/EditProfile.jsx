@@ -8,7 +8,7 @@ import PopUpEdit from "./PopUpEdit";
 import { authActions } from "../../../../store/authSlice";
 import ROUTES from "../../../../routes/ROUTES";
 
-const EditProfile = ({ thisId }) => {
+const EditProfile = ({ thisId, y }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [thisDisplay, setDisplay] = useState("none");
@@ -36,8 +36,8 @@ const EditProfile = ({ thisId }) => {
         theme: "dark",
       });
 
-      dispatch(authActions.logout());
-      navigate(ROUTES.LOGIN);
+      y++;
+      navigate(ROUTES.HOME);
     } catch (err) {
       toast(err.response.data, {
         position: "top-right",

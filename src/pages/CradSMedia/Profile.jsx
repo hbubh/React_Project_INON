@@ -6,7 +6,7 @@ import ProfileSetBuz from "./ui/profileUi/ProfileSetBuz";
 import DeleteUser from "./ui/profileUi/DeleteUser";
 import EditProfile from "./ui/profileUi/EditProfile";
 import { toast } from "react-toastify";
-
+let y = 0;
 const Profile = () => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
@@ -56,9 +56,10 @@ const Profile = () => {
           position: toast.POSITION.TOP_CENTER,
         });
       });
-  }, [loggedIn]);
+  }, [loggedIn, y]);
 
   const handleBuzUpgrade = () => {
+    window.scrollTo(50, 50);
     setPop("block");
     setOpa("0.4");
   };
@@ -97,7 +98,7 @@ const Profile = () => {
               display: "inline-block",
             }}
           >
-            <EditProfile thisId={thisId} />
+            <EditProfile thisId={thisId} y={y} />
             <Box sx={{ width: "1%", display: "inline-block" }} />
             <DeleteUser thisId={thisId} />
           </Box>
@@ -186,16 +187,18 @@ const Profile = () => {
               borderRadius: "50px",
             }}
           >
-            <img
-              style={{
-                width: "100%",
-                height: "auto",
-                opacity: thisOpa,
-                transition: "all 1s",
-              }}
-              src={thisUrl}
-              alt={thisAlt}
-            />
+            <Box sx={{ width: { xs: "40%", md: "100%" } }}>
+              <img
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  opacity: thisOpa,
+                  transition: "all 1s",
+                }}
+                src={thisUrl}
+                alt={thisAlt}
+              />
+            </Box>
           </Box>
         </Grid>
       </Grid>

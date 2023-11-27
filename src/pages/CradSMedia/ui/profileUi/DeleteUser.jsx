@@ -4,15 +4,16 @@ import ROUTES from "../../../../routes/ROUTES";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PopUpDelete from "./PopUpDelete";
 import { authActions } from "../../../../store/authSlice";
-
+let x = 0;
 const DeleteUser = ({ thisId }) => {
   const navigate = useNavigate();
-  const [thisDisplay, setDisplay] = useState("none");
-  const dispatch = useDispatch;
-  const [thisOp, setOp] = useState("1");
+  const [thisDisplay, setDisplay] = React.useState("none");
+  const dispatch = useDispatch();
+  const [thisOp, setOp] = React.useState("1");
+
   const handleDeleteClick = () => {
     setDisplay("block");
     setOp("0");
@@ -23,7 +24,8 @@ const DeleteUser = ({ thisId }) => {
   };
   const handleDeleteDone = async () => {
     try {
-      let data = await axios.delete(`/users/${thisId}`);
+      let id = thisId;
+      let data = await axios.delete(`/users/${id}`);
       localStorage.clear();
       sessionStorage.clear();
       toast("You Delete Your User successfully", {
@@ -36,15 +38,18 @@ const DeleteUser = ({ thisId }) => {
         progress: undefined,
         theme: "dark",
       });
-
-      dispatch(authActions.logout());
+      x = 1;
       navigate(ROUTES.HOME);
+      dispatch(authActions.logout());
     } catch (err) {
       toast.info(`Unsuccess data error, `, {
         position: toast.POSITION.TOP_CENTER,
       });
+      console.log(err);
     }
   };
+  /*  sendAfterD(); */
+  const sendAfterD = () => {};
   return (
     <Fragment>
       <Box sx={{ display: thisDisplay }}>
