@@ -10,7 +10,7 @@ const FilterComponent = () => {
   const navigate = useNavigate();
   const handleInputChange = (e) => {
     setTxt(e.target.value);
-    navigate(`/React_Project_INON?filter=${e.target.value}`);
+    navigate(`/React_Project_INON/?filter=${e.target.value}`);
   };
 
   return (
