@@ -12,7 +12,7 @@ const PopUpDelete = ({ createDel, cancelDel }) => {
       sx={{
         width: { xs: "100vw", md: "40vw" },
         height: "60vh",
-        margin: { xs: "-5vh -35vh", md: "-5vh -25vh" },
+        margin: { xs: "-15vh -15vw", md: "-50vh -35vh" },
         border: "3px solid white",
         textAlign: "center",
         padding: "30px",

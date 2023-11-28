@@ -5,7 +5,6 @@ import Container from "@mui/material/Container";
 import StatusUser from "./ui/StatusUserComponent";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-
 import FilterComponent from "./ui/FilterComponent";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -14,6 +13,8 @@ import ROUTES from "../../routes/ROUTES";
 import SlideNav from "./ui/SlideNav";
 import CustomizedSwitches from "./ui/NewIconSwitch";
 import axios from "axios";
+import rerender from "../../components/rerender";
+import IcomMenu from "./ui/IconMenu";
 
 const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
@@ -22,6 +23,8 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
   const [thisAlt, setAlt] = React.useState("profile img");
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
   let data;
+  let reRen = rerender();
+
   if (userData) {
     data = userData._id;
   }
@@ -33,7 +36,7 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
         setAlt(data.image.alt);
       })
       .catch((err) => {});
-  }, [loggedIn]);
+  }, [loggedIn, reRen]);
   const handleProfileClick = () => {
     navigate(ROUTES.PROFILE);
   };
@@ -102,8 +105,8 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
                 spacing={2}
                 onClick={handleProfileClick}
                 sx={{
-                  width: "3%",
-                  display: { xs: "none", md: "block" },
+                  width: { xs: "10%", md: "3%" },
+                  display: { xs: "block", md: "block" },
                   height: "auto",
                   borderRadius: "110px",
                   border: "3px solid darkgray",
@@ -116,7 +119,7 @@ const ResponsiveAppBar = ({ themeChange, thisTheme }) => {
                   alt={thisAlt}
                   src={thisUrl}
                   sx={{ width: "100%", height: "auto" }}
-                />{" "}
+                />
               </Stack>
             ) : (
               <></>

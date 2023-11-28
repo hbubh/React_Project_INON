@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import PopUpEdit from "./PopUpEdit";
 import { authActions } from "../../../../store/authSlice";
 import ROUTES from "../../../../routes/ROUTES";
-
+import rerender from "../../../../components/rerender";
 const EditProfile = ({ thisId, y }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,8 +35,9 @@ const EditProfile = ({ thisId, y }) => {
         progress: undefined,
         theme: "dark",
       });
-
       y++;
+      rerender();
+      dispatch(authActions.login);
       navigate(ROUTES.HOME);
     } catch (err) {
       toast(err.response.data, {
@@ -61,6 +62,8 @@ const EditProfile = ({ thisId, y }) => {
         sx={{
           opacity: thisOp,
           transition: "all 0.5s",
+          mt: "2%",
+          width: "100%",
         }}
         onClick={handleDeleteClick}
       >

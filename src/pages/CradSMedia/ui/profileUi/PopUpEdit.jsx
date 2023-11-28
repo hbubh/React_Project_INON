@@ -63,7 +63,7 @@ const PopUpEdit = ({ createEdit, cancelEdit }) => {
         padding: "50px",
         width: { xs: "100vw", md: "40vw" },
         height: "120vh",
-        margin: { xs: "0 -70vw", md: "0 -5vw" },
+        margin: { xs: "-100vh -20vw", md: "-50vh -10vw" },
         textAlign: "center",
         bgcolor: "white",
         position: "absolute",

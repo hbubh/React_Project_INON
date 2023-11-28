@@ -6,6 +6,7 @@ import ProfileSetBuz from "./ui/profileUi/ProfileSetBuz";
 import DeleteUser from "./ui/profileUi/DeleteUser";
 import EditProfile from "./ui/profileUi/EditProfile";
 import { toast } from "react-toastify";
+import LogOutPro from "./ui/profileUi/LogOutProfile";
 let y = 0;
 const Profile = () => {
   const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
@@ -79,17 +80,19 @@ const Profile = () => {
             transition: "all 1s",
           }}
         >
-          {" "}
           <Typography
             variant="h3"
             sx={{
-              marginBottom: "5%",
+              marginTop: "5%",
+              marginBottom: "2%",
               display: "inline-block",
-              width: "70%",
-              fontFamily: "fantasy",
+              width: "100%",
+              fontFamily: "inherit",
+              textTransform: "uppercase",
             }}
           >
-            User Profile
+            <span style={{ fontWeight: "bold" }}> {thisFirstName}</span>: User
+            Profile
           </Typography>
           <Box
             sx={{
@@ -97,56 +100,85 @@ const Profile = () => {
               padding: "15px",
               display: "inline-block",
             }}
-          >
-            <EditProfile thisId={thisId} y={y} />
-            <Box sx={{ width: "1%", display: "inline-block" }} />
-            <DeleteUser thisId={thisId} />
-          </Box>
+          ></Box>{" "}
           <Typography
-            sx={{ marginTop: "2%", fontSize: "19pt" }}
+            sx={{
+              marginTop: "2%",
+              borderBottom: "2px solid black",
+              fontSize: "19pt",
+            }}
             variant="subtitle1"
           >
             Name:{" "}
-            <Typography sx={sx}>
+            <Typography sx={{ display: "inline" }}>
               {thisFirstName} {thisLastName}
             </Typography>
           </Typography>
           <Typography
-            sx={{ marginTop: "2%", fontSize: "19pt" }}
+            sx={{
+              marginTop: "2%",
+              borderBottom: "2px solid black",
+              fontSize: "19pt",
+            }}
             variant="subtitle1"
           >
-            Phone: <Typography sx={sx}>{thisPhone}</Typography>
+            Phone:{" "}
+            <Typography sx={{ display: "inline" }}>{thisPhone}</Typography>
           </Typography>
           <Typography
-            sx={{ marginTop: "2%", fontSize: "19pt" }}
+            sx={{
+              marginTop: "2%",
+              borderBottom: "2px solid black",
+              fontSize: "19pt",
+            }}
             variant="subtitle1"
           >
-            Email: <Typography sx={sx}>{thisEmail}</Typography>
+            Email:{" "}
+            <Typography sx={{ display: "inline" }}>{thisEmail}</Typography>
           </Typography>
           <Typography
-            sx={{ marginTop: "2%", fontSize: "19pt" }}
+            sx={{
+              marginTop: "2%",
+              borderBottom: "2px solid black",
+              fontSize: "19pt",
+            }}
             variant="subtitle1"
           >
-            Address: <Typography sx={sx}>{thisAdd}</Typography>
+            Address:{" "}
+            <Typography sx={{ display: "inline" }}>{thisAdd}</Typography>
           </Typography>
           <Typography
-            sx={{ marginTop: "2%", fontSize: "19pt" }}
+            sx={{
+              marginTop: "2%",
+              borderBottom: "2px solid black",
+              fontSize: "19pt",
+            }}
             variant="subtitle1"
           >
-            User Created: <Typography sx={sx}>{thisCreate}</Typography>
+            User Created:{" "}
+            <Typography sx={{ display: "inline" }}>{thisCreate}</Typography>
           </Typography>
           <Typography
-            sx={{ marginTop: "2%", fontSize: "19pt" }}
+            sx={{
+              marginTop: "2%",
+              borderBottom: "2px solid black",
+              fontSize: "19pt",
+            }}
             variant="subtitle1"
           >
-            User ID: <Typography sx={sx}>{thisId}</Typography>
+            User ID:{" "}
+            <Typography sx={{ display: "inline" }}>{thisId}</Typography>
           </Typography>
           <Typography
-            sx={{ marginTop: "2%", fontSize: "19pt" }}
+            sx={{
+              marginTop: "2%",
+              borderBottom: "2px solid black",
+              fontSize: "19pt",
+            }}
             variant="subtitle1"
           >
             Business Plan:{" "}
-            <Typography sx={sx}>
+            <Typography sx={{ display: "inline" }}>
               {thisBus}{" "}
               <Button
                 onClick={handleBuzUpgrade}
@@ -163,10 +195,15 @@ const Profile = () => {
             </Typography>
           </Typography>
           <Typography
-            sx={{ marginTop: "2%", fontSize: "19pt" }}
+            sx={{
+              marginTop: "2%",
+              borderBottom: "2px solid black",
+              fontSize: "19pt",
+            }}
             variant="subtitle1"
           >
-            Admin Plan: <Typography sx={sx}>{thisAdmin}</Typography>
+            Admin Plan:{" "}
+            <Typography sx={{ display: "inline" }}>{thisAdmin}</Typography>
           </Typography>
         </Grid>
         <Grid
@@ -183,21 +220,26 @@ const Profile = () => {
               bgcolor: "white",
               width: "100%",
               height: "auto",
-              padding: "50px",
+              padding: "20px",
               borderRadius: "50px",
             }}
           >
-            <Box sx={{ width: { xs: "40%", md: "100%" } }}>
+            <Box sx={{ width: { xs: "80%", md: "100%" } }}>
               <img
                 style={{
                   width: "100%",
                   height: "auto",
                   opacity: thisOpa,
                   transition: "all 1s",
+                  border: "2px solid black",
+                  marginBottom: "2%",
                 }}
                 src={thisUrl}
                 alt={thisAlt}
               />
+              <LogOutPro />
+              <EditProfile thisId={thisId} y={y} />
+              <DeleteUser thisId={thisId} />
             </Box>
           </Box>
         </Grid>

@@ -66,6 +66,7 @@ const DeleteUser = ({ thisId }) => {
           bgcolor: "black",
           color: "white",
           mt: "2%",
+          width: "100%",
         }}
         onClick={handleDeleteClick}
       >
