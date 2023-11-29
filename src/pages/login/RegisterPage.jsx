@@ -97,6 +97,9 @@ const RegisterPage = () => {
   const handleBusClick = (e) => {
     setBus(e.target.checked);
   };
+  const handleLogClick = () => {
+    navigate(ROUTES.LOGIN);
+  };
 
   return (
     <Box
@@ -161,7 +164,7 @@ const RegisterPage = () => {
       </Button>
       <Grid container justifyContent="flex-end">
         <Grid item>
-          <Link href="/login" variant="body2">
+          <Link onClick={handleLogClick} variant="body2">
             Already have an account? Sign in
           </Link>
         </Grid>

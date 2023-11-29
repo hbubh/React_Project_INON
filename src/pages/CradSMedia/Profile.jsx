@@ -25,7 +25,6 @@ const Profile = () => {
   const [thisAlt, setAlt] = useState("error on load..");
   const [thisDisplay, setDisplay] = useState("none");
   const [thisOpa, setOpa] = useState("1");
-  const sx = { borderBottom: "2px solid black", padding: "3px" };
 
   useEffect(() => {
     axios
@@ -218,13 +217,14 @@ const Profile = () => {
           <Box
             sx={{
               bgcolor: "white",
-              width: "100%",
+              width: { xs: "80%", md: "100%" },
               height: "auto",
               padding: "20px",
               borderRadius: "50px",
+              mt: "3%",
             }}
           >
-            <Box sx={{ width: { xs: "80%", md: "100%" } }}>
+            <Box sx={{ width: { xs: "100%", md: "100%" } }}>
               <img
                 style={{
                   width: "100%",

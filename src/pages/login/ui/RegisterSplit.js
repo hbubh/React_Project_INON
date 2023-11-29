@@ -89,20 +89,21 @@ const registerSplit = (inputsValue) => {
       autoComplete: "new-city",
     },
     {
-      name: "street",
-      id: "street",
-      require: true,
-      label: "Street",
-      value: inputsValue.street,
-      autoComplete: "new-street",
-    },
-    {
       name: "houseNumber",
       id: "houseNumber",
       require: true,
       label: "House Number",
       value: inputsValue.houseNumber,
       autoComplete: "new-houseNumber",
+    },
+
+    {
+      name: "street",
+      id: "street",
+      require: true,
+      label: "Street",
+      value: inputsValue.street,
+      autoComplete: "new-street",
     },
     {
       name: "zip",

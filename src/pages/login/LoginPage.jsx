@@ -80,7 +80,10 @@ const LoginPage = () => {
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
   };
-  /* template lvl for html */
+  const handleLogClick = () => {
+    navigate(ROUTES.REGISTER);
+  };
+
   return (
     <Grid
       container
@@ -173,7 +176,7 @@ const LoginPage = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href={ROUTES.REGISTER} variant="body2">
+                <Link onClick={handleLogClick} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
