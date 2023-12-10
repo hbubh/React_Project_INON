@@ -60,6 +60,7 @@ const EditCardPage = () => {
         <TamplateCards
           handleCreateCardClick={handleCreateCardClickS}
           errorsState={errorsState}
+          idCard={_id}
         />
       </Grid>
     </Container>

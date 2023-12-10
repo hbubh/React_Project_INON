@@ -1,12 +1,13 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AlertToEdit from "./AlertToEdit";
 import editSplit from "./editSplit";
+import { useSelector } from "react-redux";
 import { validateEdit } from "../../../../Validation/editValidation";
-
-const PopUpEdit = ({ createEdit, cancelEdit }) => {
+import axios from "axios";
+const PopUpEdit = ({ createEdit, cancelEdit, thisId }) => {
   const [errorsState, setErrorsState] = useState(null);
-
+  const userData = useSelector((bigPie) => bigPie.authSlice.userData);
   const [inputsValue, setInputsValue] = useState({
     first: "",
     middle: "",
@@ -21,6 +22,31 @@ const PopUpEdit = ({ createEdit, cancelEdit }) => {
     houseNumber: "",
     zip: "",
   });
+  useEffect(() => {
+    axios
+      .get(`/users/${userData._id}`)
+      .then(({ data }) => {
+        console.log(data);
+        setInputsValue({
+          first: data.name.first,
+          middle: data.name.middle,
+          last: data.name.last,
+          phone: data.phone,
+          email: data.email,
+          url: data.image.url,
+          alt: data.image.alt,
+          state: data.address.state,
+          country: data.address.country,
+          city: data.address.city,
+          street: data.address.street,
+          houseNumber: data.address.houseNumber,
+          zip: +data.address.zip,
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }, []);
   let request = {
     name: {
       first: inputsValue.first,

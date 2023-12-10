@@ -55,7 +55,11 @@ const EditProfile = ({ thisId, y }) => {
   return (
     <Fragment>
       <Box sx={{ display: thisDisplay }}>
-        <PopUpEdit createEdit={handleEditDone} cancelEdit={handleCancelEdit} />
+        <PopUpEdit
+          createEdit={handleEditDone}
+          cancelEdit={handleCancelEdit}
+          thisId={thisId}
+        />
       </Box>
       <Button
         variant="contained"

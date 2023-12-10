@@ -1,11 +1,15 @@
 import { Box, Button, Container, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ROUTES from "../../../../routes/ROUTES";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AlertToCards from "./AlertToCards";
+import axios from "axios";
 
 const TamplateCards = ({ handleCreateCardClick, errorsState }) => {
   const [thisAble, setAble] = React.useState(true);
+  const { _id } = useParams();
+
   const [inputsValue, setInputValue] = useState({
     title: "",
     subtitle: "",
@@ -22,6 +26,32 @@ const TamplateCards = ({ handleCreateCardClick, errorsState }) => {
     houseNumber: "",
     zip: "",
   });
+  useEffect(() => {
+    axios
+      .get(`/cards/${_id}`)
+      .then(({ data }) => {
+        console.log(data);
+        setInputValue({
+          title: data.title,
+          subtitle: data.subtitle,
+          description: data.description,
+          phone: data.phone,
+          email: data.email,
+          web: data.web,
+          url: data.image.url,
+          alt: data.image.alt,
+          state: data.address.state,
+          country: data.address.country,
+          city: data.address.city,
+          street: data.address.street,
+          houseNumber: data.address.houseNumber,
+          zip: +data.address.zip,
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }, []);
 
   const arr = [
     { id: "title", label: "Title", require: true, value: inputsValue.title },
